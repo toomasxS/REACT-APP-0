@@ -2,9 +2,8 @@
 function Alerta(props) {
     // Aqui usamos props.texto, enviada pelo componente App
     return (
-        <div className={`text-center ${props.NOVA
-            }`} role="alert">
-            {props.mytexto}
+        <div className={`text-center alert alert-${props.tipo } text-center}`} role="alert">
+            {props.texto}
         </div>
     );
 }

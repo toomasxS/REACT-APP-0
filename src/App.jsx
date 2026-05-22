@@ -6,6 +6,10 @@ import './App.css'
 
 import Mensagem from './Mensagem';
 import Alerta from './Alerta';
+import Contador from './Contador';
+import Formulario from './Formulario';
+import Tarefas from './Tarefas';
+
 
 function App() {
   return (
@@ -22,6 +26,8 @@ function App() {
         Clica-me!
       </button>
 
+      <Contador />
+
       {/* Cada componente recebe props diferentes */}
       <p className="lead text-center">
         Mensagem
@@ -30,8 +36,12 @@ function App() {
       <Mensagem mytext="Os componentes permitem reutilizar código!" />
 
 
-      <Alerta tipo="success" mytexto="Na verdade é só o pastel" />
-      <Alerta mytexto="muito buro" />
+      <Alerta tipo="success" texto="O Dinis" />
+      <Alerta tipo="danger" texto="é muito" />
+      <Alerta tipo="warning" texto="muito buro bradier" />
+
+      <Formulario />
+      <Tarefas />
 
     </div>
   );

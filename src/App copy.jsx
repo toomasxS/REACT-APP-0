@@ -9,7 +9,6 @@ import Alerta from './Alerta';
 import Contador from './Contador';
 import Formulario from './Formulario';
 import Tarefas from './Tarefas';
-import Notas from './Notas';
 
 
 function App() {
@@ -43,7 +42,7 @@ function App() {
 
       <Formulario />
       <Tarefas />
-      <Notas />
+
     </div>
   );
 }

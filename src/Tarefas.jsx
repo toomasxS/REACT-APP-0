@@ -17,7 +17,7 @@ function Tarefas() {
         e.preventDefault(); // impede o recarregamento da página
         setDadosSubmetidos(formData); // guarda os dados preenchidos
 
-         const novoTarefa = {
+        const novoTarefa = {
             id: Date.now(),
             titulo: formData.titulo,
             data: formData.data,
@@ -37,11 +37,20 @@ function Tarefas() {
         setTarefas([...tarefas, novoTarefa]);
         setDadosSubmetidos(null);
     }
-    
+
     // Limpa o formulário e os dados apresentados
     function limparFormulario() {
         setFormData({ id: '', titulo: '', data: '', descricao: '' });
         setDadosSubmetidos(null);
+    }
+
+    function eliminarTarefa(id) {
+        const tarefasAtualizadas = tarefas.filter((tarefa) => tarefa.id !== id);
+        setTarefas(tarefasAtualizadas);
+    }
+
+    function LimparTarefas(id) {
+        setTarefas([]);
     }
 
     return (
@@ -69,6 +78,8 @@ function Tarefas() {
 
 
 
+
+
                     {/* Botões de ação */}
                     <button className="btn btn-success mr-2">Enviar</button>
 
@@ -78,6 +89,8 @@ function Tarefas() {
                     <button type="button" className="btn btn-outline-secondary"
                         onClick={newTarefa}>Nova Tarefa</button>
 
+                    <button type="button" className="btn btn-outline-secondary"
+                        onClick={LimparTarefas}>Limpar Tarefas</button>
 
                 </form>
             </div >
@@ -108,6 +121,7 @@ function Tarefas() {
                             <h5>{tarefa.titulo}</h5>
                             <p>{tarefa.data}</p>
                             <p>{tarefa.descricao}</p>
+                            <button className="btn btn-danger btn-sm" onClick={() => eliminarTarefa(tarefa.id)}>Eliminar</button>
                         </li>
                     ))}
                 </ul>

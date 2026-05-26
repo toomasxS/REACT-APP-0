@@ -43,6 +43,8 @@ function App() {
 
       <Formulario />
       <Tarefas />
+
+      <h1 className="text-center text-primary">Notas</h1>
       <Notas />
     </div>
   );

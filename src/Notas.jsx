@@ -55,9 +55,11 @@ function Notas() {
                 </div>
                 <div className="col-3">
                     <label>Atitudes (%):</label>
-                    <input type="number" className="form-control" value={formData.atitudes} max="20" min="0" onChange={(e) => setFormData({ ...formData, atitudes: e.target.value })} />
+                    <input type="number" className="form-control" value={formData.atitudes} max="           20" min="0" onChange={(e) => setFormData({ ...formData, atitudes: e.target.value })} />
                 </div>
             </div>
+            <button className="btn btn-success mr-2">Calcular</button>
+            <button className="btn btn-danger mr-2">Limpar</button>
         </>
     );
 }

@@ -13,6 +13,27 @@ function Notas() {
         atitudes: ''
     });
 
+    const [mediaPonderada, setMediaFinal] = useState(null);
+
+    function Calcular() {
+        const notaTeste = parseFloat(formData.notaTeste) || 0;
+        const notaTrabalho = parseFloat(formData.notaTrabalho) || 0;
+        const notaAtitudes = parseFloat(formData.notaAtitudes) || 0;
+
+        const testesPeso = parseFloat(formData.testes) || 0;
+        const trabalhosPeso = parseFloat(formData.trabalhos) || 0;
+        const atitudesPeso = parseFloat(formData.atitudes) || 0;
+
+        const mediaPonderada = (notaTeste * testesPeso + notaTrabalho * trabalhosPeso + notaAtitudes * atitudesPeso) / (testesPeso + trabalhosPeso + atitudesPeso);
+
+        setMediaFinal(mediaPonderada.toFixed(2));
+    }
+
+    function limparFormulario() {
+        setFormData({ nome: '', disciplina: '', notaTeste: '', notaTrabalho: '', notaAtitudes: '', testes: '', trabalhos: '', atitudes: '' });
+        setMediaFinal(null);
+    }
+
     return (
         <>
             <div className="row">
@@ -55,11 +76,27 @@ function Notas() {
                 </div>
                 <div className="col-3">
                     <label>Atitudes (%):</label>
-                    <input type="number" className="form-control" value={formData.atitudes} max="           20" min="0" onChange={(e) => setFormData({ ...formData, atitudes: e.target.value })} />
+                    <input type="number" className="form-control" value={formData.atitudes} max="20" min="0" onChange={(e) => setFormData({ ...formData, atitudes: e.target.value })} />
                 </div>
             </div>
-            <button className="btn btn-success mr-2">Calcular</button>
-            <button className="btn btn-danger mr-2">Limpar</button>
+            <div className="mt-3">
+                <button className="btn btn-success mr-2" onClick={Calcular}>Calcular</button>
+                <button className="btn btn-danger mr-2" onClick={limparFormulario}>Limpar</button>
+            </div>
+            <div className="text-center mt-4">
+                {parseFloat(mediaPonderada) >= 9.5 &&
+                 <p className="alert alert-success">
+                    Aluno Aprovado!
+                </p>
+                }
+                {parseFloat(mediaPonderada) < 9.5 &&
+                 <p className="alert alert-danger">
+                    Aluno Reprovado!
+                </p>
+                }
+                Media Ponderada: {mediaPonderada}
+
+            </div>
         </>
     );
 }
